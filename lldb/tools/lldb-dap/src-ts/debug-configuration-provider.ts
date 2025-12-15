@@ -6,6 +6,7 @@ import { createDebugAdapterExecutable } from "./debug-adapter-factory";
 import { ConfigureButton, showErrorMessage } from "./ui/show-error-message";
 import { ErrorWithNotification } from "./ui/error-with-notification";
 import { LogFilePathProvider } from "./logging";
+import { ApkDebugConfiguration } from "./android/apk-debug-configuration";
 
 const exec = util.promisify(child_process.execFile);
 
@@ -226,6 +227,18 @@ export class LLDBDapConfigurationProvider
           delete debugConfiguration.debugAdapterArgs;
           debugConfiguration.debugAdapterHostname = serverInfo.host;
           debugConfiguration.debugAdapterPort = serverInfo.port;
+        }
+      }
+
+      if (debugConfiguration.androidComponent && debugConfiguration.request === "launch") {
+        // TODO: check ADB, connected devices and anything needed to run the android debug session
+        if (
+          !debugConfiguration.launchCommands ||
+          debugConfiguration.launchCommands.length === 0
+        ) {
+          // TODO: manage deviceId
+          debugConfiguration.launchCommands =
+            ApkDebugConfiguration.getLldbLaunchCommands(undefined, debugConfiguration.androidComponent);
         }
       }
 
