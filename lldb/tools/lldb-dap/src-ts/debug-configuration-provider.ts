@@ -6,7 +6,6 @@ import { createDebugAdapterExecutable } from "./debug-adapter-factory";
 import { ConfigureButton, showErrorMessage } from "./ui/show-error-message";
 import { ErrorWithNotification } from "./ui/error-with-notification";
 import { LogFilePathProvider } from "./logging";
-import { ApkDebugConfiguration } from "./android/apk-debug-configuration";
 import { AndroidConfigurationBuilder } from "./android/android-configuration-builder";
 
 const exec = util.promisify(child_process.execFile);
@@ -242,7 +241,7 @@ export class LLDBDapConfigurationProvider
             console.log(`Android device serial number: ${debugConfiguration.androidDeviceSerial}`);
           }
           debugConfiguration.launchCommands =
-            ApkDebugConfiguration.getLldbLaunchCommands(debugConfiguration.androidDeviceSerial, debugConfiguration.androidComponent);
+            AndroidConfigurationBuilder.getLldbLaunchCommands(debugConfiguration.androidDeviceSerial, debugConfiguration.androidComponent);
         }
       }
 
