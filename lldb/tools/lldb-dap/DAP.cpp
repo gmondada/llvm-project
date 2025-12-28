@@ -1437,7 +1437,7 @@ void DAP::EventThread() {
         std::string type = GetStringValue(data.GetValueForKey("type"));
         std::string message = GetStringValue(data.GetValueForKey("message"));
         SendOutput(OutputType::Important,
-                   llvm::formatv("{0}: {1}", type, message).str());
+                   llvm::formatv("{0}: {1}\n", type, message).str());
       } else if (event.BroadcasterMatchesRef(broadcaster)) {
         if (event_mask & eBroadcastBitStopEventThread) {
           done = true;
