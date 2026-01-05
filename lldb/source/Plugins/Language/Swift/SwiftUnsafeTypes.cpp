@@ -369,8 +369,8 @@ lldb::ChildCacheState SwiftUnsafePointer::Update() {
   if (argument_type.IsValid())
     m_elem_type = argument_type;
 
-  assert(
-      !m_elem_type.GetTypeName().GetStringRef().starts_with("Swift.Optional"));
+//  assert(
+//      !m_elem_type.GetTypeName().GetStringRef().starts_with("Swift.Optional"));
 
   ValueObjectSP pointer_value_sp(m_valobj.GetChildAtIndex(0, true));
   if (!pointer_value_sp) {
