@@ -1,8 +1,8 @@
 {
   "name": "lldb-dap-android",
   "displayName": "LLDB DAP Android",
-  "version": "0.1.0",
-  "publisher": "recolive",
+  "version": "0.1.1",
+  "publisher": "RecoLive",
   "homepage": "https://recolive.com",
   "description": "Debugging Android apps with LLDB in Visual Studio Code",
   "license": "Apache 2.0 License with LLVM exceptions",
