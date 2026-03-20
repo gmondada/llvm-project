@@ -304,7 +304,7 @@ export class LLDBDapDescriptorFactory
     private logFilePath: LogFilePathProvider,
   ) {
     vscode.commands.registerCommand(
-      "lldb-dap.createDebugAdapterDescriptor",
+      "lldb-dap-android.createDebugAdapterDescriptor",
       (
         session: vscode.DebugSession,
         executable: vscode.DebugAdapterExecutable | undefined,

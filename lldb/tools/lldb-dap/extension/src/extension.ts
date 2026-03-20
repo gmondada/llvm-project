@@ -35,19 +35,19 @@ export class LLDBDapExtension extends DisposableContext {
       lldbDapServer,
       sessionTracker,
       vscode.debug.registerDebugConfigurationProvider(
-        "lldb-dap",
+        "lldb-dap-android",
         new LLDBDapConfigurationProvider(lldbDapServer, logger, logFilePath),
       ),
       vscode.debug.registerDebugAdapterDescriptorFactory(
-        "lldb-dap",
+        "lldb-dap-android",
         new LLDBDapDescriptorFactory(logger, logFilePath),
       ),
       vscode.debug.registerDebugAdapterTrackerFactory(
-        "lldb-dap",
+        "lldb-dap-android",
         sessionTracker,
       ),
       vscode.window.registerTreeDataProvider(
-        "lldb-dap.modules",
+        "lldb-dap-android.modules",
         new ModulesDataProvider(sessionTracker),
       ),
       vscode.window.registerUriHandler(new LaunchUriHandler()),
@@ -55,7 +55,7 @@ export class LLDBDapExtension extends DisposableContext {
 
     this.pushSubscription(
       vscode.commands.registerCommand(
-        "lldb-dap.modules.copyProperty",
+        "lldb-dap-android.modules.copyProperty",
         (node: ModuleProperty) => vscode.env.clipboard.writeText(node.value),
       ),
     );
@@ -68,13 +68,13 @@ export class LLDBDapExtension extends DisposableContext {
  * This is the entry point when initialized by VS Code.
  */
 export async function activate(context: vscode.ExtensionContext) {
-  const outputChannel = vscode.window.createOutputChannel("LLDB-DAP", {
+  const outputChannel = vscode.window.createOutputChannel("LLDB-DAP-Android", {
     log: true,
   });
-  outputChannel.info("LLDB-DAP extension activating...");
+  outputChannel.info("LLDB-DAP-Android extension activating...");
   const logFilePath = new LogFilePathProvider(context, outputChannel);
   context.subscriptions.push(
     new LLDBDapExtension(context, outputChannel, logFilePath, outputChannel),
   );
-  outputChannel.info("LLDB-DAP extension activated");
+  outputChannel.info("LLDB-DAP-Android extension activated");
 }

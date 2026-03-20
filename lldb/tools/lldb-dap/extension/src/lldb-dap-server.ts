@@ -20,7 +20,7 @@ export class LLDBDapServer implements vscode.Disposable {
 
   constructor() {
     vscode.commands.registerCommand(
-      "lldb-dap.getServerProcess",
+      "lldb-dap-android.getServerProcess",
       () => this.serverProcess,
     );
   }

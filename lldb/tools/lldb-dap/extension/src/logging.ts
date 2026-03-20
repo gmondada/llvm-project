@@ -44,7 +44,7 @@ export class LogFilePathProvider {
       case LogType.DEBUG_SESSION:
         return path.join(
           logFolder,
-          `lldb-dap-${formatDate(new Date())}-${vscode.env.sessionId.split("-")[0]}.log`,
+          `lldb-dap-android-${formatDate(new Date())}-${vscode.env.sessionId.split("-")[0]}.log`,
         );
         break;
     }
@@ -62,7 +62,7 @@ export class LogFilePathProvider {
       })
       .then(() => {
         this.logFolder = logFolder;
-        this.logger.info(`Persisting lldb-dap logs to ${logFolder}`);
+        this.logger.info(`Persisting lldb-dap-android logs to ${logFolder}`);
       });
   }
 }

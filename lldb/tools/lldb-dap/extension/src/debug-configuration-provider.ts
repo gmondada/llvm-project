@@ -90,7 +90,7 @@ export class LLDBDapConfigurationProvider
     private readonly logFilePath: LogFilePathProvider,
   ) {
     vscode.commands.registerCommand(
-      "lldb-dap.resolveDebugConfiguration",
+      "lldb-dap-android.resolveDebugConfiguration",
       (
         folder: vscode.WorkspaceFolder | undefined,
         debugConfiguration: vscode.DebugConfiguration,
@@ -98,7 +98,7 @@ export class LLDBDapConfigurationProvider
       ) => this.resolveDebugConfiguration(folder, debugConfiguration, token),
     );
     vscode.commands.registerCommand(
-      "lldb-dap.resolveDebugConfigurationWithSubstitutedVariables",
+      "lldb-dap-android.resolveDebugConfigurationWithSubstitutedVariables",
       (
         folder: vscode.WorkspaceFolder | undefined,
         debugConfiguration: vscode.DebugConfiguration,

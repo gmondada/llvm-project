@@ -1,25 +1,27 @@
 {
-  "name": "lldb-dap",
-  "displayName": "LLDB DAP",
-  "version": "0.4.1",
-  "publisher": "llvm-vs-code-extensions",
-  "homepage": "https://lldb.llvm.org",
-  "description": "Debugging with LLDB in Visual Studio Code",
+  "name": "lldb-dap-android",
+  "displayName": "LLDB DAP Android",
+  "version": "0.1.0",
+  "publisher": "recolive",
+  "homepage": "https://recolive.com",
+  "description": "Debugging Android apps with LLDB in Visual Studio Code",
   "license": "Apache 2.0 License with LLVM exceptions",
   "repository": {
     "type": "git",
-    "url": "https://github.com/llvm/llvm-project.git",
-    "directory": "lldb/tools/lldb-dap/"
+    "url": "https://github.com/gmondada/llvm-project.git",
+    "directory": "lldb/tools/lldb-dap/",
+    "branch": "gab/lldb-dap-android"
   },
   "bugs": {
-    "url": "https://github.com/llvm/llvm-project/issues"
+    "url": "https://github.com/gmondada/llvm-project/issues"
   },
   "icon": "llvm-logo.png",
   "keywords": [
     "C",
     "C++",
     "LLVM",
-    "LLDB"
+    "LLDB",
+    "Android"
   ],
   "engines": {
     "vscode": "^1.90.0"
@@ -62,7 +64,7 @@
     "vscode:prepublish": "npm run bundle-webview && npm run bundle-extension",
     "watch": "npm run bundle-webview && tsc -watch -p ./",
     "format": "npx prettier . --write",
-    "package": "rm -rf ./out && vsce package --out ./out/lldb-dap.vsix",
+    "package": "rm -rf ./out && vsce package --out ./out/lldb-dap-android.vsix",
     "compile": "tsc -p ./",
     "publish": "vsce publish",
     "publish-ovsx": "ovsx publish",
@@ -70,8 +72,8 @@
     "preunittest": "npm run pretest",
     "unittest": "mocha --ui tdd ./out/test/unit",
     "test": "vscode-test",
-    "vscode-uninstall": "code --uninstall-extension llvm-vs-code-extensions.lldb-dap",
-    "vscode-install": "code --install-extension ./out/lldb-dap.vsix"
+    "vscode-uninstall": "code --uninstall-extension experimental-llvm-vs-code-extensions.lldb-dap-android",
+    "vscode-install": "code --install-extension ./out/lldb-dap-android.vsix"
   },
   "contributes": {
     "languages": [
@@ -305,42 +307,42 @@
     ],
     "commands": [
       {
-        "command": "lldb-dap.modules.copyProperty",
+        "command": "lldb-dap-android.modules.copyProperty",
         "title": "Copy Value"
       },
       {
-        "command": "lldb-dap.modules.showSymbols",
+        "command": "lldb-dap-android.modules.showSymbols",
         "title": "Show Module Symbols"
       },
       {
-        "category": "lldb-dap",
-        "command": "lldb-dap.debug.showSymbols",
+        "category": "lldb-dap-android",
+        "command": "lldb-dap-android.debug.showSymbols",
         "title": "Show Symbols of a Module"
       }
     ],
     "menus": {
       "commandPalette": [
         {
-          "command": "lldb-dap.modules.copyProperty",
+          "command": "lldb-dap-android.modules.copyProperty",
           "when": "false"
         },
         {
-          "command": "lldb-dap.modules.showSymbols",
+          "command": "lldb-dap-android.modules.showSymbols",
           "when": "false"
         },
         {
-          "command": "lldb-dap.debug.showSymbols",
-          "when": "debuggersAvailable && debugType == 'lldb-dap' && lldb-dap.supportsModuleSymbolsRequest"
+          "command": "lldb-dap-android.debug.showSymbols",
+          "when": "debuggersAvailable && debugType == 'lldb-dap-android' && lldb-dap-android.supportsModuleSymbolsRequest"
         }
       ],
       "view/item/context": [
         {
-          "command": "lldb-dap.modules.copyProperty",
-          "when": "view == lldb-dap.modules && viewItem == property"
+          "command": "lldb-dap-android.modules.copyProperty",
+          "when": "view == lldb-dap-android.modules && viewItem == property"
         },
         {
-          "command": "lldb-dap.modules.showSymbols",
-          "when": "view == lldb-dap.modules && viewItem == module && lldb-dap.supportsModuleSymbolsRequest"
+          "command": "lldb-dap-android.modules.showSymbols",
+          "when": "view == lldb-dap-android.modules && viewItem == module && lldb-dap-android.supportsModuleSymbolsRequest"
         }
       ]
     },
@@ -399,8 +401,8 @@
     ],
     "debuggers": [
       {
-        "type": "lldb-dap",
-        "label": "LLDB DAP Debugger",
+        "type": "lldb-dap-android",
+        "label": "LLDB DAP Android Debugger",
         "languages": [
           "ada",
           "arm",
@@ -943,63 +945,15 @@
               }
             }
           }
-        },
-        "initialConfigurations": [
-          {
-            "type": "lldb-dap",
-            "request": "launch",
-            "name": "Debug",
-            "program": "${workspaceFolder}/<your program>",
-            "args": [],
-            "env": [],
-            "cwd": "${workspaceFolder}"
-          }
-        ],
-        "configurationSnippets": [
-          {
-            "label": "LLDB: Launch",
-            "description": "",
-            "body": {
-              "type": "lldb-dap",
-              "request": "launch",
-              "name": "${2:Launch}",
-              "program": "^\"\\${workspaceFolder}/${1:<your program>}\"",
-              "args": [],
-              "env": [],
-              "cwd": "^\"\\${workspaceFolder}\""
-            }
-          },
-          {
-            "label": "LLDB: Attach",
-            "description": "",
-            "body": {
-              "type": "lldb-dap",
-              "request": "attach",
-              "name": "${2:Attach}",
-              "program": "${1:<your program>}",
-              "waitFor": true
-            }
-          },
-          {
-            "label": "LLDB: Load Coredump",
-            "description": "",
-            "body": {
-              "type": "lldb-dap",
-              "request": "attach",
-              "name": "${2:Core}",
-              "program": "${1:<your program>}",
-              "coreFile": "${1:<your program>}.core"
-            }
-          }
-        ]
+        }
       }
     ],
     "views": {
       "debug": [
         {
-          "id": "lldb-dap.modules",
+          "id": "lldb-dap-android.modules",
           "name": "Modules",
-          "when": "inDebugMode && debugType == 'lldb-dap' && lldb-dap.showModules",
+          "when": "inDebugMode && debugType == 'lldb-dap-android' && lldb-dap-android.showModules",
           "icon": "$(symbol-module)"
         }
       ]

@@ -120,7 +120,7 @@ export class DebugSessionTracker
   private showModulesTreeView(showModules: boolean) {
     vscode.commands.executeCommand(
       "setContext",
-      "lldb-dap.showModules",
+      "lldb-dap-android.showModules",
       showModules,
     );
   }

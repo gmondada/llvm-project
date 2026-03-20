@@ -7,7 +7,7 @@ export class LaunchUriHandler implements vscode.UriHandler {
       if (uri.path == "/start") {
         // Some properties have default values
         let debugConfig: vscode.DebugConfiguration = {
-          type: "lldb-dap",
+          type: "lldb-dap-android",
           request: "launch",
           name: "",
         };
@@ -78,9 +78,9 @@ export class LaunchUriHandler implements vscode.UriHandler {
             : "URL-based Attach";
         debugConfig.name =
           debugConfig.name || debugConfig.program || defaultName;
-        // Force the type to `lldb-dap`. We don't want to allow launching any other
+        // Force the type to `lldb-dap-android`. We don't want to allow launching any other
         // Debug Adapters using this URI scheme.
-        if (debugConfig.type != "lldb-dap") {
+        if (debugConfig.type != "lldb-dap-android") {
           throw new Error(`Unsupported debugger type: ${debugConfig.type}`);
         }
         await vscode.debug.startDebugging(undefined, debugConfig);
