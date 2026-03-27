@@ -1,21 +1,22 @@
 {
   "name": "lldb-dap-android",
-  "displayName": "LLDB DAP Android",
-  "version": "0.1.1",
+  "displayName": "Android LLDB",
+  "version": "0.2.0",
   "publisher": "RecoLive",
-  "homepage": "https://recolive.com",
+  "homepage": "https://github.com/gmondada",
   "description": "Debugging Android apps with LLDB in Visual Studio Code",
   "license": "Apache 2.0 License with LLVM exceptions",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gmondada/llvm-project.git",
+    "url": "https://github.com/gmondada/llvm-project/tree/gab/lldb-dap-android-for-marketplace/lldb/tools/lldb-dap/extension",
+    "git": "https://github.com/gmondada/llvm-project.git",
     "directory": "lldb/tools/lldb-dap/",
-    "branch": "gab/lldb-dap-android"
+    "branch": "gab/lldb-dap-android-for-marketplace"
   },
   "bugs": {
     "url": "https://github.com/gmondada/llvm-project/issues"
   },
-  "icon": "llvm-logo.png",
+  "icon": "android-lldb.png",
   "keywords": [
     "C",
     "C++",
@@ -72,7 +73,7 @@
     "preunittest": "npm run pretest",
     "unittest": "mocha --ui tdd ./out/test/unit",
     "test": "vscode-test",
-    "vscode-uninstall": "code --uninstall-extension experimental-llvm-vs-code-extensions.lldb-dap-android",
+    "vscode-uninstall": "code --uninstall-extension RecoLive.lldb-dap-android",
     "vscode-install": "code --install-extension ./out/lldb-dap-android.vsix"
   },
   "contributes": {
